@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
 
 		eth_hdr = (struct libnet_ethernet_hdr*) packet;
 		ip_hdr = (struct libnet_ipv4_hdr*) (packet + sizeof(*eth_hdr));
-		tcp_hdr = (struct libnet_tcp_hdr*) (packet + sizeof(*eth_hdr) + sizeof(*tcp_hdr));
+		tcp_hdr = (struct libnet_tcp_hdr*) (packet + sizeof(*eth_hdr) + (ip_hdr->ip_hl)*4);
 
 		printf("%u bytes captured\n", header->caplen);
 		
